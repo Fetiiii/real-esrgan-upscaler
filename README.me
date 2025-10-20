@@ -1,30 +1,40 @@
-# 🧠 AI Image & Video Upscaler (Real-ESRGAN)
+# 🧠 Real-ESRGAN Image & Video Upscaler
 
-Bu proje, **Real-ESRGAN** modelini kullanarak hem **fotoğraf** hem de **video** çözünürlük artırma işlemleri yapabilen bir **yapay zeka tabanlı web uygulamasıdır**.  
-
-
----
-
-## 🚀 Özellikler
-- Görüntüleri yüksek çözünürlüğe dönüştürme
-- Videolarda kare bazlı süper çözünürlük artırımı
-- Hugging Face API entegrasyonu
-- Web arayüzü (Gradio)
-- Hugging Face Spaces uyumlu
+> Enhance low-resolution images and videos using **Real-ESRGAN** — a powerful generative model for super-resolution.
 
 ---
 
-## 🧰 Kullanılan Teknolojiler
-- Python, Gradio,
-- OpenCV, Pillow, MoviePy  
-- PyTorch, Requests  
+## 🚀 Features
+- 🖼️ Image upscaling up to 4×
+- 🎞️ Video frame-by-frame enhancement
+- ⚙️ CPU & GPU support
+- 🌐 Gradio-based modern UI
 
 ---
 
-## ⚙️ Kurulum
+## 🛠️ Installation
 
 ```bash
-git clone https://github.com/kullaniciadi/real-esrgan-upscaler.git
+git clone https://github.com/Fetiiii/real-esrgan-upscaler.git
 cd real-esrgan-upscaler
 pip install -r requirements.txt
+Then download the pretrained model (63 MB) from:
+https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth?utm_source=chatgpt.com
+and place it in the project root.
+
+
+▶️ Run Locally
 python app.py
+The Gradio UI will open automatically at http://127.0.0.1:7860.
+
+
+🧠 Model Details
+Backbone: RRDBNet (Residual-in-Residual Dense Blocks)
+Scale: 4×
+Training Dataset: DF2K + synthetic degradations
+Framework: PyTorch
+
+📜 License
+MIT © 2025 Feti
+Pretrained weights belong to https://github.com/xinntao/Real-ESRGAN?utm_source=chatgpt.com
+
