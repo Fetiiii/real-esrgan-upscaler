@@ -1,0 +1,18 @@
+
+# Geçici dosyalar
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ortam dosyaları
+*.env
+.env
+
+# Video test dosyaları
+*.mp4
+*.avi
+
+# MacOS / Windows gereksiz dosyalar
+.DS_Store
+Thumbs.db

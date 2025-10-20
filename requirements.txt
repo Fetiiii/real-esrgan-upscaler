@@ -1,0 +1,14 @@
+torch>=2.0.0
+torchvision>=0.15.0
+gradio
+opencv-python
+numpy
+Pillow
+requests
+imageio
+imageio-ffmpeg
+moviepy==1.0.3
+realesrgan
+basicsr
+facexlib
+gfpgan
