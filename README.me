@@ -2,39 +2,230 @@
 
 > Enhance low-resolution images and videos using **Real-ESRGAN** — a powerful generative model for super-resolution.
 
----
-
-## 🚀 Features
-- 🖼️ Image upscaling up to 4×
-- 🎞️ Video frame-by-frame enhancement
-- ⚙️ CPU & GPU support
-- 🌐 Gradio-based modern UI
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 
 ---
 
-## 🛠️ Installation
+## 📦 İçindekiler
+
+- [Özellikler](#-özellikler)
+- [Kurulum](#️-kurulum)
+  - [1. Projeyi İndirin](#1️⃣-projeyi-i̇ndirin)
+  - [2. Bağımlılıkları Yükleyin](#2️⃣-bağımlılıkları-yükleyin)
+  - [3. Model Dosyasını İndirin](#3️⃣-model-dosyasını-i̇ndirin)
+- [Kullanım](#️-kullanım)
+  - [Yerel Çalıştırma](#yerel-çalıştırma)
+  - [Komut Satırı Kullanımı](#komut-satırı-kullanımı)
+- [Model Detayları](#-model-detayları)
+- [Örnek Kullanım](#-örnek-kullanım)
+- [Sorun Giderme](#️-sorun-giderme)
+- [Katkıda Bulunma](#-katkıda-bulunma)
+- [Lisans](#-lisans)
+
+---
+
+## 🚀 Özellikler
+
+- 🖼️ **Görüntü iyileştirme:** 4×'e kadar upscaling
+- 🎞️ **Video işleme:** Frame-by-frame enhancement
+- ⚙️ **Esnek altyapı:** CPU & GPU desteği
+- 🌐 **Modern UI:** Gradio tabanlı kullanıcı arayüzü
+- 🎯 **Yüksek kalite:** Gerçekçi detay iyileştirme
+- ⚡ **Hızlı işlem:** Optimize edilmiş model mimarisi
+
+---
+
+## 🛠️ Kurulum
+
+### 1️⃣ Projeyi İndirin
 
 ```bash
 git clone https://github.com/Fetiiii/real-esrgan-upscaler.git
 cd real-esrgan-upscaler
+```
+
+### 2️⃣ Bağımlılıkları Yükleyin
+
+```bash
 pip install -r requirements.txt
-Then download the pretrained model (63 MB) from:
-https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth?utm_source=chatgpt.com
-and place it in the project root.
+```
 
+**Gerekli Kütüphaneler:**
+- PyTorch (2.0+)
+- Gradio
+- OpenCV
+- NumPy
+- Pillow
 
-▶️ Run Locally
+### 3️⃣ Model Dosyasını İndirin
+
+Eğitilmiş model dosyasını (63 MB) indirin:
+
+🔗 [RealESRGAN_x4plus.pth](https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth)
+
+İndirilen `RealESRGAN_x4plus.pth` dosyasını **proje ana dizinine** yerleştirin:
+
+```
+real-esrgan-upscaler/
+├── RealESRGAN_x4plus.pth  ← Buraya
+├── app.py
+├── requirements.txt
+└── ...
+```
+
+---
+
+## ▶️ Kullanım
+
+### Yerel Çalıştırma
+
+Gradio arayüzünü başlatın:
+
+```bash
 python app.py
-The Gradio UI will open automatically at http://127.0.0.1:7860.
+```
+
+Uygulama otomatik olarak tarayıcınızda açılacaktır: **http://127.0.0.1:7860**
+
+### Gradio Arayüzü
+
+1. **Görüntü yükleyin** veya sürükleyip bırakın
+2. **Upscale** butonuna tıklayın
+3. **İyileştirilmiş görüntüyü** indirin
+
+### Komut Satırı Kullanımı
+
+*(Eğer CLI versiyonu eklediyseniz)*
+
+```bash
+# Tek görüntü işleme
+python inference.py --input input.jpg --output output.jpg
+
+# Video işleme
+python inference.py --input video.mp4 --output video_upscaled.mp4
+
+# GPU seçimi
+python inference.py --input input.jpg --output output.jpg --gpu 0
+```
+
+---
+
+## 🧠 Model Detayları
+
+| Özellik | Değer |
+|---------|-------|
+| **Mimari** | RRDBNet (Residual-in-Residual Dense Blocks) |
+| **Ölçek Faktörü** | 4× |
+| **Eğitim Veri Seti** | DF2K + sentetik degradasyonlar |
+| **Framework** | PyTorch |
+| **Model Boyutu** | 63 MB |
+| **Giriş Formatları** | JPG, PNG, BMP, TIFF |
+| **Çıkış Formatı** | PNG (kayıpsız) |
+
+### Mimari Özellikleri
+
+- **RRDB Blokları:** Derin residual yapı ile detay koruma
+- **GAN Tabanlı:** Gerçekçi doku üretimi
+- **Perceptual Loss:** İnsan algısına optimize edilmiş
+
+---
+
+## 📸 Örnek Kullanım
+
+### Görüntü İyileştirme
+
+```python
+from inference import enhance_image
+
+# Görüntü yükleme ve iyileştirme
+input_path = "low_res_image.jpg"
+output_path = "enhanced_image.png"
+
+enhance_image(input_path, output_path, scale=4)
+print(f"İyileştirilmiş görüntü kaydedildi: {output_path}")
+```
+
+### Video İşleme
+
+```python
+from inference import enhance_video
+
+# Video frame-by-frame iyileştirme
+video_path = "input_video.mp4"
+output_path = "output_video.mp4"
+
+enhance_video(video_path, output_path, scale=4)
+print(f"İyileştirilmiş video kaydedildi: {output_path}")
+```
+
+---
+
+## 🛠️ Sorun Giderme
+
+| Sorun | Çözüm |
+|-------|-------|
+| `Model file not found` | `RealESRGAN_x4plus.pth` dosyasının proje dizininde olduğundan emin olun. |
+| `CUDA out of memory` | Daha küçük batch size kullanın veya CPU moduna geçin. |
+| `Module not found` | `pip install -r requirements.txt` komutunu tekrar çalıştırın. |
+| Gradio açılmıyor | Port 7860'ın kullanımda olmadığını kontrol edin veya `app.py`'de farklı port belirleyin. |
+| Düşük görüntü kalitesi | Giriş görüntüsünün çok bozuk olmadığından emin olun. Model 4× ölçekleme için optimize edilmiştir. |
+
+### GPU Kullanımı
+
+CUDA destekli GPU kullanmak için:
+
+```python
+# app.py içinde
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+```
+
+### Bellek Optimizasyonu
+
+Büyük görüntüler için tile-based işleme:
+
+```python
+# Görüntüyü parçalara bölerek işle
+tile_size = 512  # Bellek durumuna göre ayarlayın
+```
+
+---
+
+## 📜 Lisans
+
+Bu proje **MIT Lisansı** altında dağıtılmaktadır.
+
+```
+MIT License © 2025 Feti
+```
+
+### Model Lisansı
+
+Pretrained model ağırlıkları [xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) reposuna aittir ve orijinal lisans şartlarına tabidir.
+
+---
+
+## 📚 Referanslar
+
+- **Original Paper:** [Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data](https://arxiv.org/abs/2107.10833)
+- **GitHub Repository:** [xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)
+- **Model Weights:** [Hugging Face Hub](https://huggingface.co/ai-forever/Real-ESRGAN)
+
+---
+
+## 🌟 İlgili Projekte
+
+- [BasicSR](https://github.com/XPixelGroup/BasicSR) - Image/video restoration framework
+- [GFPGAN](https://github.com/TencentARC/GFPGAN) - Face restoration
+- [CodeFormer](https://github.com/sczhou/CodeFormer) - Face restoration with transformers
+
+---
+
+<div align="center">
+
+**⭐ Projeyi beğendiyseniz yıldız vermeyi unutmayın!**
 
 
-🧠 Model Details
-Backbone: RRDBNet (Residual-in-Residual Dense Blocks)
-Scale: 4×
-Training Dataset: DF2K + synthetic degradations
-Framework: PyTorch
 
-📜 License
-MIT © 2025 Feti
-Pretrained weights belong to https://github.com/xinntao/Real-ESRGAN?utm_source=chatgpt.com
-
+</div>
