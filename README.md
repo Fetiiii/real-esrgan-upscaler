@@ -24,7 +24,6 @@
 - [Kullanım](#️-kullanım)
   - [Yerel Çalıştırma](#yerel-çalıştırma)
 - [Model Detayları](#-model-detayları)
-- [Örnek Kullanım](#-örnek-kullanım)
 - [Sorun Giderme](#️-sorun-giderme)
 - [Lisans](#-lisans)
 
@@ -110,35 +109,6 @@ Uygulama otomatik olarak tarayıcınızda açılacaktır: **http://127.0.0.1:786
 
 ---
 
-## 📸 Örnek Kullanım
-
-### Görüntü İyileştirme
-
-```python
-from inference import enhance_image
-
-# Görüntü yükleme ve iyileştirme
-input_path = "low_res_image.jpg"
-output_path = "enhanced_image.png"
-
-enhance_image(input_path, output_path, scale=4)
-print(f"İyileştirilmiş görüntü kaydedildi: {output_path}")
-```
-
-### Video İşleme
-
-```python
-from inference import enhance_video
-
-# Video frame-by-frame iyileştirme
-video_path = "input_video.mp4"
-output_path = "output_video.mp4"
-
-enhance_video(video_path, output_path, scale=4)
-print(f"İyileştirilmiş video kaydedildi: {output_path}")
-```
-
----
 
 ## 🛠️ Sorun Giderme
 
